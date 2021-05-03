@@ -1,10 +1,11 @@
-<a href="/todos/new">create</a>
+<a href="./todos/new">create</a>
 
 <ul>
   {{#each todos}}
   <li>
     {{ this.name }}
-    <a href="/todos/{{ this._id }}">detail</a>
+    <a href="./todos/{{ this._id }}">detail</a>
+    <a href="./todos/{{ this._id }}/edit">edit</a>
   </li>
   
   {{/each}}
