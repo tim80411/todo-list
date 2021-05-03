@@ -44,6 +44,7 @@ app.get('/todos/:id', (req, res) => {
 
 })
 
+// route: update todo function
 app.get('/todos/:id/edit', (req, res) => {
   const id = req.params.id
   return Todo.findById(id)
@@ -64,6 +65,7 @@ app.post('/todos/:id/edit', (req, res) => {
     .catch(error => console.error(error))
 })
 
+// route: create todo function
 app.get('/todos/new', (req, res) => {
   res.render('new')
 })
@@ -73,6 +75,15 @@ app.post('/todos', (req, res) => {
   const todo = new Todo({ name })
 
   return todo.save()
+    .then(() => res.redirect('/'))
+    .catch(error => console.error(error))
+})
+
+// route: delete todo function
+app.post('/todos/:id/delete', (req, res) => {
+  const id = req.params.id
+  return Todo.findById(id)
+    .then(todo => todo.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.error(error))
 })
