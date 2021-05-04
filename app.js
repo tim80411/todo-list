@@ -31,10 +31,12 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.get('/', (req, res) => {
   Todo.find()
     .lean()
+    .sort({ _id: 1 })
     .then(todos => res.render('index', { todos }))
     .catch(error => console.error(error))
 })
 
+// route: detail
 app.get('/todos/:id', (req, res) => {
   const id = req.params.id
   return Todo.findById(id)
