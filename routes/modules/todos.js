@@ -2,6 +2,10 @@ const express = require('express')
 const router = express.Router()
 const Todo = require('../../models/todo')
 
+// route: create todo function
+router.get('/new', (req, res) => {
+  res.render('new')
+})
 
 // route: detail
 router.get('/:id', (req, res) => {
@@ -33,11 +37,6 @@ router.put('/:id', (req, res) => {
     })
     .then(() => res.redirect(`/todos/${id}`))
     .catch(error => console.error(error))
-})
-
-// route: create todo function
-router.get('/new', (req, res) => {
-  res.render('new')
 })
 
 router.post('/', (req, res) => {

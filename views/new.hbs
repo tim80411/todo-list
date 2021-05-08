@@ -1,4 +1,8 @@
-<form action="/todos" method="POST">
-  <input type="text" name="name">
-  <button type="submit">create</button>
+<form action="/todos/{{ todo._id }}" method="POST" style="display: inline;">
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="name" name="name">
+    <div class="input-group-append">
+      <button class="btn btn-success" type="submit">create</button>
+    </div>
+  </div>
 </form>
