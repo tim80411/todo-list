@@ -5,4 +5,12 @@ router.get('/login', (req, res) => {
   res.render('login')
 })
 
+router.post('/login', (req, res) => {
+  res.send('POST /users/login success')
+})
+
+router.get('/register', (req, res) => {
+  res.render('register')
+})
+
 module.exports = router
