@@ -29,6 +29,13 @@ app.use(methodOverride('_method'))
 
 usePassport(app)
 
+// 將req資料交給所有view template
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated
+  res.locals.user = req.user
+  return next()
+})
+
 app.use(router)
 
 app.listen(PORT, () => {
