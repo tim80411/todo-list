@@ -6,13 +6,15 @@ const passport = require('passport')
 
 
 router.get('/login', (req, res) => {
+
   res.render('login')
 })
 
 router.post('/login',
   passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/users/login'
+    failureRedirect: '/users/login',
+    failureFlash: true
   })
 
 )
@@ -47,7 +49,7 @@ router.post('/register', (req, res) => {
   return User.findOne({ email })
     .then(user => {
       if (user) {
-        errors.push({ message: '該位使用者已註冊'})
+        errors.push({ message: '該位使用者已註冊' })
         return res.render('register', { errors, name, email, password, confirmPassword })
       }
 
