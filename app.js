@@ -4,12 +4,17 @@ const session = require('express-session')
 const methodOverride = require('method-override')
 const flash = require('connect-flash')
 
+if (process.env.NODE_ENV !== 'prodution') {
+  require('dotenv').config()
+}
+
 const usePassport = require('./config/passport')
 const router = require('./routes/index.js')
 require('./config/mongoose.js')
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT
 const app = express()
+
 
 // set up view engine
 app.engine('hbs', exphbs({
@@ -20,7 +25,7 @@ app.set('view engine', 'hbs')
 
 // set up middleware
 app.use(session({
-  secret: 'ThisIsMySecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
