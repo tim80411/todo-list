@@ -7,8 +7,7 @@ const passport = require('passport')
 
 
 router.get('/login', (req, res) => {
-
-  res.render('login')
+  res.status(200).render('login')
 })
 
 router.post('/login',
